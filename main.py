@@ -2,8 +2,19 @@ from fastapi import FastAPI
 from kerykeion import RelationshipScore,AstrologicalSubject, KerykeionChartSVG
 from pydantic import BaseModel
 import re
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Replace with your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
